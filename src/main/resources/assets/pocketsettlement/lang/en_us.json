@@ -1,0 +1,52 @@
+{
+  "settlement.gui.title": "Governor's Desk",
+  "settlement.gui.grid": "Settlement Grid",
+  "settlement.gui.stockpile": "Stockpile",
+  "settlement.gui.contracts": "Daily Contracts",
+  "settlement.gui.citizens": "Citizenry",
+  "settlement.gui.tech": "University",
+  
+  "settlement.building.empty": "Empty Plot",
+  "settlement.building.house": "House",
+  "settlement.building.greenhouse": "Greenhouse",
+  "settlement.building.quarry": "Quarry",
+  "settlement.building.lumber_yard": "Lumber Yard",
+  "settlement.building.mob_barn": "Mob Barn",
+  "settlement.building.market": "Market",
+  "settlement.building.academy": "Academy",
+  "settlement.building.bank": "Bank",
+  "settlement.building.guard_tower": "Guard Tower",
+  
+  "settlement.citizen.job.none": "Unemployed",
+  "settlement.citizen.job.farmer": "Farmer",
+  "settlement.citizen.job.miner": "Miner",
+  "settlement.citizen.job.lumberjack": "Lumberjack",
+  "settlement.citizen.job.rancher": "Rancher",
+  "settlement.citizen.job.merchant": "Merchant",
+  "settlement.citizen.job.guard": "Guard",
+  "settlement.citizen.job.scholar": "Scholar",
+  
+  "settlement.resource.wood": "Wood",
+  "settlement.resource.stone": "Stone",
+  "settlement.resource.food": "Food",
+  "settlement.resource.coal": "Coal",
+  "settlement.resource.iron": "Iron",
+  "settlement.resource.gold": "Gold",
+  "settlement.resource.diamond": "Diamond",
+  "settlement.resource.leather": "Leather",
+  "settlement.resource.wool": "Wool",
+  
+  "settlement.feedback.confirmed": "CONFIRMED",
+  "settlement.feedback.denied": "DENIED",
+  "settlement.feedback.upgraded": "UPGRADED",
+  "settlement.feedback.collected": "COLLECTED",
+  
+  "settlement.tooltip.efficiency": "Efficiency: %s%%",
+  "settlement.tooltip.worker": "Worker: %s",
+  "settlement.tooltip.level": "Level %s",
+  "settlement.tooltip.progress": "Progress: %s%%",
+  
+  "settlement.command.open": "Opens the Governor's Desk",
+  "settlement.command.balance": "Shows your coin balance",
+  "settlement.command.reset": "Resets your settlement (Admin only)"
+}

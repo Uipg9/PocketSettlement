@@ -1,0 +1,24 @@
+# Gradle
+.gradle/
+build/
+
+# IDE
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+classes/
+
+# Runtime
+run/
+
+# MacOS
+.DS_Store
+
+# Fabric Loom
+remappedSrc/
+
+# Temp files
+*.log
+*.tmp

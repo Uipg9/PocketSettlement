@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "pocketsettlement",
+  "version": "${version}",
+  "name": "Pocket Settlement",
+  "description": "The Governor's Desk - A cozy, Vanilla Plus colony simulator that plays entirely within a beautiful, code-rendered GUI. Manage your settlement from the comfort of your desk!",
+  "authors": [
+    "Uipg9"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Uipg9/pocketsettlement",
+    "sources": "https://github.com/Uipg9/pocketsettlement"
+  },
+  "license": "MIT",
+  "icon": "assets/pocketsettlement/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.uipg9.pocketsettlement.PocketSettlement"
+    ],
+    "client": [
+      "com.uipg9.pocketsettlement.PocketSettlementClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
