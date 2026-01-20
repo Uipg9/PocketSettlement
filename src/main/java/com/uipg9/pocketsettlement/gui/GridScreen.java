@@ -31,9 +31,13 @@ public class GridScreen extends SimpleGui {
     }
     
     public static void open(ServerPlayer player) {
-        GridScreen screen = new GridScreen(player);
-        screen.setTitle(Component.literal("§2§l⬛ Settlement Grid"));
-        screen.open();
+        try {
+            GridScreen screen = new GridScreen(player);
+            screen.setTitle(Component.literal("§2§l⬛ Settlement Grid"));
+            screen.open();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     private void setupScreen() {
@@ -81,13 +85,15 @@ public class GridScreen extends SimpleGui {
     }
     
     private void setupGrid() {
-        // The 7x7 grid fits in rows 1-5 with some offset
-        // Slots: 9-17, 18-26, 27-35, 36-44, 45-53
-        // We'll use slots 10-16 for each row (7 columns)
+        // The 7x7 grid displayed in a 9x6 GUI
+        // 9x6 = 54 slots total (rows 0-5, cols 0-8)
+        // Row 0: Header (skip)
+        // Rows 1-5: Can fit 5x7 grid centered
+        // Actually, let's show 5x7 of the grid for now (top-left portion)
         
-        for (int gridZ = 0; gridZ < 7; gridZ++) {
-            for (int gridX = 0; gridX < 7; gridX++) {
-                int slot = (gridZ + 1) * 9 + (gridX + 1);  // Offset by 1 for border
+        for (int gridZ = 0; gridZ < 5; gridZ++) {  // Only show 5 rows
+            for (int gridX = 0; gridX < 7; gridX++) {  // Show 7 columns
+                int slot = (gridZ + 1) * 9 + (gridX + 1);  // Row 1-5, offset by 1
                 
                 Building building = state.getBuilding(gridX, gridZ);
                 GuiElementBuilder element = createBuildingElement(gridX, gridZ, building);
@@ -102,6 +108,14 @@ public class GridScreen extends SimpleGui {
                 this.setSlot(slot, element);
             }
         }
+        
+        // Add scroll info for bottom 2 rows
+        this.setSlot(49, new GuiElementBuilder()
+            .setItem(Items.ARROW)
+            .setName(Component.literal("§eShowing rows 1-5 of 7"))
+            .addLoreLine(Component.literal("§7Rows 6-7 accessible via"))
+            .addLoreLine(Component.literal("§7/settlement buildings command"))
+        );
     }
     
     private GuiElementBuilder createBuildingElement(int x, int z, Building building) {
@@ -165,18 +179,18 @@ public class GridScreen extends SimpleGui {
     private void handleGridClick(int x, int z, eu.pb4.sgui.api.ClickType clickType) {
         Building building = state.getBuilding(x, z);
         
-        if (clickType.isLeft) {
-            // Left click - open building details or production screen
-            if (!building.isEmpty() && building.getType() != BuildingType.TOWN_HALL) {
+        // Handle any click on the plot
+        if (building.isEmpty()) {
+            // Empty plot - open build menu
+            BuildMenuScreen.open(player, x, z);
+        } else if (building.getType() != BuildingType.TOWN_HALL) {
+            // Has building - check click type
+            if (clickType == eu.pb4.sgui.api.ClickType.MOUSE_LEFT || 
+                clickType == eu.pb4.sgui.api.ClickType.MOUSE_LEFT_SHIFT) {
+                // Left click - open production screen
                 openBuildingScreen(x, z, building);
-            }
-        } else if (clickType.isRight) {
-            // Right click - build or manage
-            if (building.isEmpty()) {
-                // Open build menu
-                BuildMenuScreen.open(player, x, z);
-            } else if (building.getType() != BuildingType.TOWN_HALL) {
-                // Open manage menu (upgrade/demolish)
+            } else {
+                // Right click or other - open manage menu
                 ManageBuildingScreen.open(player, x, z);
             }
         }

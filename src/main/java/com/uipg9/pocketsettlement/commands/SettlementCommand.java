@@ -29,6 +29,11 @@ public class SettlementCommand {
     
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("settlement")
+            .executes(ctx -> {
+                ServerPlayer player = ctx.getSource().getPlayerOrException();
+                showInfo(player);
+                return 1;
+            })
             .then(Commands.literal("info")
                 .executes(ctx -> {
                     ServerPlayer player = ctx.getSource().getPlayerOrException();

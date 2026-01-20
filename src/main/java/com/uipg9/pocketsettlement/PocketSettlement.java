@@ -2,6 +2,7 @@ package com.uipg9.pocketsettlement;
 
 import com.uipg9.pocketsettlement.commands.SettlementCommand;
 import com.uipg9.pocketsettlement.data.SettlementState;
+import com.uipg9.pocketsettlement.network.SettlementNetworking;
 import com.uipg9.pocketsettlement.tick.SettlementTickManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -40,6 +41,12 @@ public class PocketSettlement implements ModInitializer {
         LOGGER.info("   Version 1.0.0 for Minecraft 1.21.11");
         LOGGER.info("   Author: Uipg9");
         LOGGER.info("═══════════════════════════════════════════════════════");
+        
+        // Register packet types (must be done before server/client receivers)
+        SettlementNetworking.registerPackets();
+        
+        // Register networking
+        SettlementNetworking.registerServerReceivers();
         
         // Register commands
         CommandRegistrationCallback.EVENT.register((dispatcher, access, environment) -> {

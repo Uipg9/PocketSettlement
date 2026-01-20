@@ -43,7 +43,7 @@ public class SettlementNetworking {
     // === Registration ===
     
     /**
-     * Register packet types. Call this from both client and server init.
+     * Register packet types. Call this ONCE during mod initialization.
      */
     public static void registerPackets() {
         // Register C2S packets
@@ -55,8 +55,6 @@ public class SettlementNetworking {
      * Call from ModInitializer.
      */
     public static void registerServerReceivers() {
-        registerPackets();
-        
         // Handle open desk request
         ServerPlayNetworking.registerGlobalReceiver(OpenDeskPacket.TYPE, (payload, context) -> {
             ServerPlayer player = context.player();
@@ -75,8 +73,6 @@ public class SettlementNetworking {
      */
     @Environment(EnvType.CLIENT)
     public static void registerClientReceivers() {
-        registerPackets();
-        
         PocketSettlement.LOGGER.info("[Pocket Settlement] Client networking registered");
     }
     
